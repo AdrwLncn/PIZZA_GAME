@@ -25,7 +25,7 @@ public class MainScript : MonoBehaviour
     private Ingredient currentIngredient;
     private Instruction currentInstruction;
     private int money;
-    private int attempCount;
+    public static int AttempCount;
 
 
     public void ChangeInstruction()
@@ -42,6 +42,7 @@ public class MainScript : MonoBehaviour
 
     private void Start()
     {
+        attempCountText.text = AttempCount.ToString();
         ChangeInstruction();
         BlockButton();
     }
@@ -103,14 +104,14 @@ public class MainScript : MonoBehaviour
 
     public void CheckPizza()
     {
-        if (currentInstruction.Check(currentIngredients) && attempCount > 0)
+        if (currentInstruction.Check(currentIngredients) && AttempCount > 0)
             moneyText.text = (money + 100).ToString();
             if (gameTimer.CurrentSec > 20)
                 moneyText.text = (money + 50).ToString();
             else if (gameTimer.CurrentSec > 10)
                 moneyText.text = (money + 30).ToString();
-        if (attempCount > 0)
-            attempCountText.text = (attempCount - 1).ToString();
+        if (AttempCount > 0)
+            attempCountText.text = (AttempCount - 1).ToString();
     }
     // Прикрепляется к кнопке завершить
     public void MakePizza() 
